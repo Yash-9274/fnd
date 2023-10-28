@@ -43,5 +43,13 @@ def random():
     return jsonify({'title': data.loc[index].title, 'text': data.loc[index].text, 'label': str(data.loc[index].label)})
 
 
+
+@app.route('/login', methods=['GET'])
+def login():
+    return render_template('login.html')
+
+if __name__ == '__main__':
+    app.run(debug=True)
+
 if __name__ == '__main__':
     app.run()

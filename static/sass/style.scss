@@ -6,7 +6,7 @@ $grid-gutter-width: 40px !default;
 $border-radius-base:  4px !default;
 $padding-base-vertical: 14px !default;
 
-$brand-primary: #a2dc4d !default;
+$brand-primary: purple!default;
 $brand-footer-color: #232525;
 
 $brand-white: #fff;
@@ -192,7 +192,7 @@ h1, h2, h3, h4, h5, h6, figure {
 .staff-img, 
 .blog-img,
 .colorlib-about-img,
-.services-img,{
+.services-img{
 	background-size: cover;
 	background-position: center center;
 	background-repeat: no-repeat;
