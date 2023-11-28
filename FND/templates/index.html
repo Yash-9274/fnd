@@ -1,0 +1,29 @@
+<!-- templates/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fake News Detection</title>
+</head>
+<body>
+    <h1>News Articles</h1>
+    <ul>
+        {% for article in articles %}
+            <li>
+                <strong>{{ article.title }}</strong>
+                <p>{{ article.description }}</p>
+                <p><a href="{{ article.url }}" target="_blank">Read More</a></p>
+            </li>
+        {% endfor %}
+    </ul>
+
+    <h2>Verify Text</h2>
+    <form action="/verify" method="post">
+        <label for="verification_text">Enter Text for Verification:</label>
+        <textarea id="verification_text" name="verification_text" rows="4" cols="50"></textarea>
+        <br>
+        <input type="submit" value="Verify">
+    </form>
+</body>
+</html>
