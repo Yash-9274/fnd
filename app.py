@@ -17,7 +17,7 @@ def is_fake_news(verification_text, articles):
 
 @app.route('/')
 def home():
-    return render_template('index.html')
+    return render_template('home.html')
 
 @app.route('/verify', methods=['POST'])
 def verify_text():
