@@ -1,41 +1,20 @@
-# Use the official Python image as a base image
-FROM python:3.8-slim
+# Use an official Python runtime as a parent image
+FROM python:3.8
 
-# Set the working directory in the container
+# Set the working directory to /app
 WORKDIR /app
 
-# Copy the dependencies file to the working directory
-COPY requirements.txt .
+# Copy the current directory contents into the container at /app
+COPY . /app
 
-# Install any dependencies
+# Install any needed packages specified in requirements.txt
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copy the content of the local src directory to the working directory
-COPY . .
-
-# Expose the port that Flask will run on
+# Make port 5000 available to the world outside this container
 EXPOSE 5000
 
-# Define the command to run your application
+# Define environment variable
+ENV NAME World
+
+# Run app.py when the container launches
 CMD ["python", "app.py"]
-
-# For Jenkins
-USER root
-RUN apt-get update && apt-get install -y sudo
-
-# Jenkins-specific settings
-ARG user=jenkins
-ARG group=jenkins
-ARG uid=1000
-ARG gid=1000
-
-RUN groupadd -g ${gid} ${group} \
-    && useradd -d "/var/jenkins_home" -u ${uid} -g ${gid} -m -s /bin/bash ${user} \
-    && usermod -aG sudo ${user} \
-    && echo "${user} ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
-
-# Switch back to non-root user
-USER ${user}
-
-# Jenkins runs on port 8080
-EXPOSE 8080

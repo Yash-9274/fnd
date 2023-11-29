@@ -1,8 +1,10 @@
 # app.py
 from flask import Flask, render_template, request
 import requests
+from flask_cors import CORS
 
-app = Flask(__name__)
+
+app = Flask(__name__, template_folder='templates')
 
 # News API URL with your API key
 news_api_url = "https://newsapi.org/v2/everything"
@@ -17,7 +19,7 @@ def is_fake_news(verification_text, articles):
 
 @app.route('/')
 def home():
-    return render_template('home.html')
+    return render_template('index.html')
 
 @app.route('/verify', methods=['POST'])
 def verify_text():
@@ -46,4 +48,6 @@ def verify_text():
     return render_template('result.html', result=result)
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True, host='0.0.0.0', port=8000)
+
+CORS(app)
