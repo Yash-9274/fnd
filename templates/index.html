@@ -5,9 +5,79 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fake News Detection</title>
+    <style>
+        body {
+            background-color: black;
+            color: pink;
+            text-align: center;
+            font-family: 'Arial', sans-serif;
+        }
+
+        h1 {
+            color: pink;
+            font-size: 2.7em;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            margin-bottom: 20px;
+        }
+
+        a {
+            color: pink;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        h2 {
+            color: pink;
+            font-size: 2em;
+        }
+
+        form {
+            margin: 20px 0;
+            width: 100%;
+            max-width: 600px; /* Set a maximum width for the form */
+            padding: 20px;
+            background-color: #333;
+            border-radius: 10px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        label, textarea, input {
+            display: block;
+            margin-bottom: 10px;
+            width: 100%;
+            font-size: 1.5em;
+        }
+
+        textarea {
+            height: 210px; /* Increase the height of the textarea */
+        }
+
+        input[type="submit"] {
+            background-color: pink;
+            color: black;
+            cursor: pointer;
+            font-size: 1em; /* Reduce the size of the submit button */
+            padding: 5px 10px;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #ff66b2;
+        }
+    </style>
 </head>
 <body>
-    <h1>News Articles</h1>
+    <h1>Fake News Detection</h1>
     <ul>
         {% for article in articles %}
             <li>
