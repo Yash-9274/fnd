@@ -1,37 +1,29 @@
-# tests.py
 import unittest
+from flask import Flask
 from app import app
 
-class FlaskAppTests(unittest.TestCase):
+class FlaskAppTest(unittest.TestCase):
+
     def setUp(self):
-        app.config['TESTING'] = True
+        # Create a test client
         self.app = app.test_client()
-
-        # Use the app context to ensure templates are rendered
-        self.app_context = app.app_context()
-        self.app_context.push()
-
-    def tearDown(self):
-        # Pop the app context after the test is done
-        self.app_context.pop()
+        self.app.testing = True
 
     def test_home_route(self):
+        # Test the home route
         response = self.app.get('/')
-        # Log the rendered HTML for debugging
-        print(response.data.decode('utf-8'))
-
-        # Ensure status code is 200 and 'News Articles' is in the rendered HTML
         self.assertEqual(response.status_code, 200)
-        self.assertIn(b'News Articles', response.data)
+        self.assertIn(b'Fake News Detection', response.data)
 
     def test_verify_text_route(self):
-        response = self.app.post('/verify', data={'verification_text': 'fake'})
-        # Log the rendered HTML for debugging
-        print(response.data.decode('utf-8'))
-
-        # Ensure status code is 200 and 'Text Verification Result' is in the rendered HTML
+        # Test the verify text route with a sample verification text
+        verification_text = 'example'
+        response = self.app.post('/verify', data={'verification_text': verification_text})
         self.assertEqual(response.status_code, 200)
         self.assertIn(b'Text Verification Result', response.data)
+
+    def tearDown(self):
+        pass
 
 if __name__ == '__main__':
     unittest.main()
