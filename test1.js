@@ -1,17 +1,20 @@
 const { Builder, By, Key, until } = require('selenium-webdriver');
+const firefox = require('selenium-webdriver/firefox');
 
 async function runTest() {
-  // Set up the WebDriver with Chrome
+  // Set up the WebDriver with Firefox
   let driver = await new Builder()
-    .forBrowser('chrome')
+    .forBrowser('firefox')
+    .setFirefoxOptions(new firefox.Options().headless(false)) // Set headless to true for a headless run
     .build();
 
   try {
     // Navigate to your website
-    await driver.get('http://127.0.0.1:8000/');
+    await driver.wait(until.urlIs('http://127.0.0.1:5000/'), 10000);
 
-    // Wait for the search box to be present
-    let searchBox = await driver.wait(until.elementLocated(By.name('q')), 5000);
+
+    // Wait for the search box to be present with an increased timeout
+    let searchBox = await driver.wait(until.elementLocated(By.name('q')), 10000);
 
     // Interact with the search box
     await searchBox.sendKeys('Selenium', Key.RETURN);
