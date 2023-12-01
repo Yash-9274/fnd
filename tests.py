@@ -13,7 +13,9 @@ class FlaskAppTest(unittest.TestCase):
         # Test the home route
         response = self.app.get('/')
         self.assertEqual(response.status_code, 200)
-        self.assertIn(b'Fake News Detection', response.data)
+        
+        # Modify the assertion to expect a different string
+        self.assertIn(b'This should cause the test to fail', response.data)
 
     def test_verify_text_route(self):
         # Test the verify text route with a sample verification text
