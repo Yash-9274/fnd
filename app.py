@@ -41,9 +41,9 @@ def verify_text():
 
     # Check if the verification text is present in any part of the news articles
     if is_fake_news(verification_text, articles):
-        result = "Real News: The text is present in the news articles."
+        result = "Real News: The news is genuine ."
     else:
-        result = "Fake News: The text is not found in the news articles."
+        result = "Fake News: The news is not genuine."
 
     return render_template('result.html', result=result)
 
