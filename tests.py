@@ -14,7 +14,7 @@ class FlaskAppTests(unittest.TestCase):
     def test_home_route(self):
         response = self.app.get('/')
         self.assertEqual(response.status_code, 200)
-        self.assertIn(b'News Articles', response.data)
+        self.assertIn(b'Fake News Detection', response.data)
 
     def test_verify_text_route(self):
         response = self.app.post('/verify', data={'verification_text': 'fake'})
