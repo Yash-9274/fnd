@@ -1,4 +1,4 @@
-User
+
 # tests.py
 import unittest
 from app import app
